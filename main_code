@@ -1,0 +1,61 @@
+/**
+ * Write a description of class Main here.
+ *
+ * @author S. Khan
+ */
+import java.util.ArrayList;
+import java.util.Collections;
+public class longestSeq
+{
+
+    public static int longestConsecutive(ArrayList<Integer> nums) {
+        if (nums == null || nums.size() == 0) {
+            return 0;
+        }
+
+        Collections.sort(nums);
+        int longest = 1;
+        int current = 1;
+
+        for (int i = 1; i < nums.size() ; i++) {
+            if (nums.get(i) != nums.get(i - 1)) {
+                if (nums.get(i) == nums.get(i - 1) + 1) {
+                    current++;
+                    longest = Math.max(longest, current);
+                }
+                else {
+                    current = 1;
+                }
+            }
+        }
+        return longest;
+    }
+
+//test cases below
+    public static void main(String[] args) {
+
+        ArrayList<Integer> nums1 = new ArrayList<>();
+        nums1.add(100);
+        nums1.add(4);
+        nums1.add(200);
+        nums1.add(1);
+        nums1.add(3);
+        nums1.add(2);
+
+        System.out.println(longestConsecutive(nums1));  
+
+        ArrayList<Integer> nums2 = new ArrayList<>();
+        nums2.add(0);
+        nums2.add(3);
+        nums2.add(7);
+        nums2.add(2);
+        nums2.add(5);
+        nums2.add(8);
+        nums2.add(4);
+        nums2.add(6);
+        nums2.add(0);
+        nums2.add(1);
+
+        System.out.println(longestConsecutive(nums2));  
+    }
+}
